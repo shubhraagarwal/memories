@@ -3,13 +3,14 @@ import memories from './images/memories.png';
 import Posts from './components/Posts/Posts';
 import Form from './components/Forms/Form';
 import makeStyles from './appStyles';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getPosts } from './actions/posts';
 import { useDispatch } from 'react-redux';
 
 function App() {
   const classes = makeStyles();
   const dispatch = useDispatch();
+  const [currentId, setcurrentId] = useState(null);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -37,10 +38,10 @@ function App() {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts />
+              <Posts setcurrentId={setcurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form currentId={currentId} />
             </Grid>
           </Grid>
         </Container>
